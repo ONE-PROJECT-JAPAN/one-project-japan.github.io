@@ -43,103 +43,19 @@ meta_description: "NIST CSF 2.0はIT活用のブレーキではなく、事業�
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIST CSF 2.0 インタラクティブ・ガイド</title>
+    <title>NIST CSF 2.0 静的インフォグラフィック</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Calm Harmony -->
-    <!-- Application Structure Plan: The application is designed as a thematic, single-page dashboard to guide the user on a logical journey. It starts with addressing the core user concern ("Is CSF a brake?") and then logically progresses from the 'Why' (myth-busting), to the 'What' (interactive core concepts), to the 'How' (practical implementation with Tiers and Profiles), and finally to the 'Value' (business case and ROI). This non-linear, thematic structure is superior to the report's linear format for user engagement and comprehension, allowing users to explore sections based on their immediate questions while still providing a clear narrative path. -->
-    <!-- Visualization & Content Choices: 
-        - Report Info: The core misconception of CSF as a "brake". -> Goal: Inform/Persuade. -> Presentation: Hero section with a clear value proposition ("Compass & Accelerator"). -> Interaction: None, direct messaging. -> Justification: Immediately addresses the user's primary concern.
-        - Report Info: The 6 Functions of CSF 2.0. -> Goal: Organize/Inform. -> Viz: Interactive HTML/CSS "Wheel" diagram. -> Interaction: Click on a function to display its detailed explanation. -> Justification: Provides a memorable visual anchor for the framework's central structure. -> Library/Method: Vanilla JS.
-        - Report Info: Implementation Tiers. -> Goal: Compare/Inform. -> Viz: Interactive table. -> Interaction: Click buttons (Tier 1-4) to highlight and display the corresponding tier's characteristics. -> Justification: Allows for easy, direct comparison of maturity levels. -> Library/Method: Vanilla JS.
-        - Report Info: Implementation Roadmap. -> Goal: Organize/Inform. -> Viz: Sequential HTML/CSS step-by-step diagram. -> Interaction: Static visual. -> Justification: Clearly visualizes the implementation process from start to finish. -> Library/Method: HTML/CSS with Tailwind.
-        - Report Info: ROI and maturity progress. -> Goal: Inform/Change. -> Viz: Bar Chart showing maturity improvement (e.g., Tier 2 to Tier 3). -> Interaction: Static, for illustration. -> Justification: Visually demonstrates the value and progress from CSF adoption, supporting the business case. -> Library/Method: Chart.js.
-        - Report Info: Case Studies. -> Goal: Inform/Provide Evidence. -> Viz: Card-based layout. -> Interaction: Filter buttons by industry ('Technology', 'Finance'). -> Justification: Allows users to quickly find relevant real-world examples. -> Library/Method: Vanilla JS.
-    -->
+    <!-- Chosen Palette: Brilliant Blues -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background-color: #F8F9FA;
-            color: #212529;
-        }
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #0077B6;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-        .wheel-container {
-            width: 400px;
-            height: 400px;
-            position: relative;
-        }
-        .wheel-center {
-            position: absolute;
-            width: 40%;
-            height: 40%;
-            background-color: #0077B6;
-            border-radius: 50%;
-            top: 30%;
-            left: 30%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            color: white;
-            text-align: center;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .wheel-center:hover {
-            transform: scale(1.05);
-        }
-        .wheel-segment {
-            position: absolute;
-            width: 50%;
-            height: 50%;
-            background-color: #CAF0F8;
-            transform-origin: 100% 100%;
-            clip-path: polygon(0 0, 100% 0, 100% 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .wheel-segment .segment-label {
-            transform: rotate(-45deg);
-            font-weight: 500;
-            color: #03045E;
-            font-size: 0.9rem;
-            text-align: center;
-            padding-left: 30px;
-        }
-        .wheel-segment:hover, .wheel-segment.active {
-            background-color: #90E0EF;
-            transform: scale(1.02);
-        }
-        .tier-button.active {
-            background-color: #0077B6;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            background-color: #f7fafc;
+            color: #1a202c;
         }
         .chart-container {
             position: relative;
@@ -150,53 +66,42 @@ meta_description: "NIST CSF 2.0はIT活用のブレーキではなく、事業�
             height: 350px;
             max-height: 400px;
         }
-        .case-study-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .case-study-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
     </style>
 </head>
-<body class="bg-[#F8F9FA]">
+<body class="bg-gray-50">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-30 shadow-sm">
+    <header class="bg-white/90 backdrop-blur-lg sticky top-0 z-30 shadow-md">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-[#023E8A]">
-                NIST CSF 2.0 ガイド
+                NIST CSF 2.0 インフォグラフィック
             </div>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#myth" class="nav-link text-gray-600 hover:text-[#0077B6] font-medium">なぜCSFか</a>
-                <a href="#framework" class="nav-link text-gray-600 hover:text-[#0077B6] font-medium">フレームワーク</a>
-                <a href="#implementation" class="nav-link text-gray-600 hover:text-[#0077B6] font-medium">実践方法</a>
-                <a href="#value" class="nav-link text-gray-600 hover:text-[#0077B6] font-medium">ビジネス価値</a>
-                <a href="#roadmap" class="nav-link text-gray-600 hover:text-[#0077B6] font-medium">導入ロードマップ</a>
+                <a href="#myth" class="text-gray-700 hover:text-[#0077B6] font-medium">神話の解体</a>
+                <a href="#framework" class="text-gray-700 hover:text-[#0077B6] font-medium">フレームワーク</a>
+                <a href="#implementation" class="text-gray-700 hover:text-[#0077B6] font-medium">実践方法</a>
+                <a href="#value" class="text-gray-700 hover:text-[#0077B6] font-medium">ビジネス価値</a>
             </div>
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Section 1: Myth Busting -->
         <section id="myth" class="py-20 bg-white">
             <div class="container mx-auto px-6 text-center">
                 <h1 class="text-4xl md:text-5xl font-bold text-[#023E8A] mb-4">羅針盤とアクセル</h1>
-                <p class="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">NIST CSF 2.0は、IT活用の「ブレーキ」ではありません。<br>事業成長を加速させる、戦略的な「推進力」です。</p>
+                <p class="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">NIST CSF 2.0は、IT活用の「ブレーキ」ではありません。<br>事業成長を加速させる、戦略的な「推進力」です。</p>
                 <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left">
-                    <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg">
-                        <h3 class="text-2xl font-bold text-red-800 mb-2">誤解：「ブレーキ」</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-bold text-red-800 mb-3">誤解：「ブレーキ」</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
                             <li>厳格な規則のチェックリスト</li>
                             <li>イノベーションを阻害する</li>
                             <li>大企業・重要インフラ向け</li>
                             <li>証明困難なコストセンター</li>
                         </ul>
                     </div>
-                    <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
-                        <h3 class="text-2xl font-bold text-green-800 mb-2">真実：「推進力」</h3>
-                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-bold text-green-800 mb-3">真実：「推進力」</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
                             <li>柔軟なリスクベースのガイダンス</li>
                             <li>セキュアなイノベーションを促進</li>
                             <li>あらゆる規模・業種の組織向け</li>
@@ -204,127 +109,131 @@ meta_description: "NIST CSF 2.0はIT活用のブレーキではなく、事業�
                         </ul>
                     </div>
                 </div>
-                <p class="mt-8 text-gray-600 max-w-3xl mx-auto">このガイドは、CSF 2.0が持つ本来の価値を解き明かし、貴社の成長戦略にどのように貢献できるかを探ります。セキュリティをコストから資産へ転換する旅を始めましょう。</p>
             </div>
         </section>
 
-        <!-- Section 2: Framework Deep Dive -->
         <section id="framework" class="py-20">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#023E8A]">フレームワークの核心</h2>
-                    <p class="mt-4 text-lg text-gray-700 max-w-2xl mx-auto">CSF 2.0は6つの「機能」で構成されます。中心に新設された「統治(Govern)」が、他の5つの機能を束ね、ビジネス戦略とセキュリティを結びつけます。</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#023E8A]">フレームワークの核心：6つの機能</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">CSF 2.0は6つの「機能」で構成されます。中心に新設された「統治(Govern)」が、他の5つの機能を束ね、ビジネス戦略とセキュリティを結びつけます。</p>
                 </div>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-                    <!-- Interactive Wheel -->
-                    <div class="wheel-container flex-shrink-0">
-                        <div class="wheel-center" data-function="govern">
-                            統治<br>Govern
-                        </div>
-                        <div class="wheel-segment" style="transform: rotate(0deg);" data-function="identify">
-                            <div class="segment-label">特定<br>Identify</div>
-                        </div>
-                        <div class="wheel-segment" style="transform: rotate(60deg);" data-function="protect">
-                            <div class="segment-label">防御<br>Protect</div>
-                        </div>
-                        <div class="wheel-segment" style="transform: rotate(120deg);" data-function="detect">
-                            <div class="segment-label">検知<br>Detect</div>
-                        </div>
-                        <div class="wheel-segment" style="transform: rotate(180deg);" data-function="respond">
-                            <div class="segment-label">対応<br>Respond</div>
-                        </div>
-                        <div class="wheel-segment" style="transform: rotate(240deg);" data-function="recover">
-                            <div class="segment-label">復旧<br>Recover</div>
-                        </div>
-                         <div class="wheel-segment" style="transform: rotate(300deg); background-color: transparent; cursor: default;">
-                        </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#023E8A]">
+                        <h3 class="text-xl font-bold text-[#023E8A] mb-2">統治 (Govern)</h3>
+                        <p class="text-gray-600">組織のサイバーセキュリティリスク管理に関する戦略、期待、ポリシーを確立し、伝達し、モニタリングします。他のすべての機能の基盤となる中心的なハブです。</p>
                     </div>
-
-                    <!-- Function Description -->
-                    <div id="function-details" class="w-full md:w-1/2 bg-white p-8 rounded-lg shadow-md min-h-[300px]">
-                        <h3 id="function-title" class="text-2xl font-bold text-[#0077B6] mb-4">機能を選択してください</h3>
-                        <p id="function-description" class="text-gray-700">中央の「統治」または周りの機能をクリックすると、その説明が表示されます。</p>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#0077B6]">
+                        <h3 class="text-xl font-bold text-[#0077B6] mb-2">特定 (Identify)</h3>
+                        <p class="text-gray-600">現在の組織の資産、リスク、脆弱性を理解し、把握します。何を守るべきか、どんなリスクがあるかを明確にする最初のステップです。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#0096C7]">
+                        <h3 class="text-xl font-bold text-[#0096C7] mb-2">防御 (Protect)</h3>
+                        <p class="text-gray-600">重要なサービスや資産の提供を確実にするための、適切な安全防護策を設計し、導入します。インシデントの発生を未然に防ぎます。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#48BFE3]">
+                        <h3 class="text-xl font-bold text-[#48BFE3] mb-2">検知 (Detect)</h3>
+                        <p class="text-gray-600">サイバーセキュリティイベントの発生を迅速に発見するための活動を実行します。異常や侵害の兆候を継続的に監視します。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#90E0EF]">
+                        <h3 class="text-xl font-bold text-[#90E0EF] mb-2">対応 (Respond)</h3>
+                        <p class="text-gray-600">検知されたサイバーセキュリティインシデントに対して、適切なアクションを取ります。インシデントの影響を封じ込めます。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#CAF0F8]">
+                        <h3 class="text-xl font-bold text-[#74c9d8] mb-2">復旧 (Recover)</h3>
+                        <p class="text-gray-600">インシデントによって損なわれた能力やサービスを、タイムリーに回復します。通常業務への復帰を目指します。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 3: How to Implement -->
         <section id="implementation" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-[#023E8A]">自社に合わせて仕立てる</h2>
-                    <p class="mt-4 text-lg text-gray-700 max-w-2xl mx-auto">CSF 2.0は画一的なルールではありません。「プロファイル」と「ティア」を使い、自社の事業戦略、リスク許容度、成熟度に合わせた最適なセキュリティ体制を構築します。</p>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">CSF 2.0は画一的なルールではありません。「プロファイル」と「ティア」を使い、自社の事業戦略、リスク許容度、成熟度に合わせた最適なセキュリティ体制を構築します。</p>
                 </div>
-
-                <!-- Tiers -->
-                <div class="mb-16">
-                    <h3 class="text-2xl font-bold text-center text-[#0077B6] mb-8">成熟度レベル「ティア」で段階的な道のりを描く</h3>
-                    <div class="flex justify-center flex-wrap gap-3 mb-6">
-                        <button class="tier-button px-6 py-2 bg-white rounded-full shadow-sm font-medium transition-all duration-300" data-tier="1">ティア1: 部分的</button>
-                        <button class="tier-button px-6 py-2 bg-white rounded-full shadow-sm font-medium transition-all duration-300" data-tier="2">ティア2: リスク情報を活用</button>
-                        <button class="tier-button px-6 py-2 bg-white rounded-full shadow-sm font-medium transition-all duration-300" data-tier="3">ティア3: 反復可能</button>
-                        <button class="tier-button px-6 py-2 bg-white rounded-full shadow-sm font-medium transition-all duration-300" data-tier="4">ティア4: 適応的</button>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr>
-                                    <th class="py-3 px-4 bg-gray-100 font-bold uppercase text-sm text-gray-600 border-b">特徴</th>
-                                    <th class="py-3 px-4 bg-gray-100 font-bold uppercase text-sm text-gray-600 border-b">説明</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tier-details">
-                                <!-- JS will populate this -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Profiles -->
-                <div>
-                    <h3 class="text-2xl font-bold text-center text-[#0077B6] mb-8">「プロファイル」で航路を描く</h3>
-                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                            <h4 class="text-xl font-bold text-gray-800 mb-3">現状プロファイル (As-Is)</h4>
-                            <p class="text-gray-600">現在のサイバーセキュリティ体制を客観的に評価し、強みと弱点を可視化します。「現在地」を正確に把握するためのスナップショットです。</p>
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-center text-[#0077B6] mb-8">「プロファイル」で航路を描く</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                                <h4 class="text-xl font-bold text-gray-800 mb-3">現状プロファイル (As-Is)</h4>
+                                <p class="text-gray-600">現在のセキュリティ体制を客観的に評価し、強みと弱点を可視化。「現在地」を正確に把握します。</p>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                                <h4 class="text-xl font-bold text-gray-800 mb-3">目標プロファイル (To-Be)</h4>
+                                <p class="text-gray-600">事業目標とリスク許容度に基づき、目指すべき理想の体制を定義。「目的地」を明確にします。</p>
+                            </div>
                         </div>
-                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                            <h4 class="text-xl font-bold text-gray-800 mb-3">目標プロファイル (To-Be)</h4>
-                            <p class="text-gray-600">事業目標とリスク許容度に基づき、目指すべき理想のセキュリティ体制を定義します。「目的地」を明確にするための戦略的な設計図です。</p>
+                        <p class="text-center mt-6 text-gray-700 font-medium">この2つの「ギャップ」を分析することで、具体的で優先順位付けされた行動計画が生まれます。</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-center text-[#0077B6] mb-8">「ティア」で段階的な道のりを描く</h3>
+                        <div class="bg-white p-4 rounded-lg shadow-md overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="p-3 font-bold text-gray-700">ティア</th>
+                                        <th class="p-3 font-bold text-gray-700">名称</th>
+                                        <th class="p-3 font-bold text-gray-700">説明</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b">
+                                        <td class="p-3 font-medium text-[#023E8A]">1</td>
+                                        <td class="p-3 font-medium">部分的</td>
+                                        <td class="p-3 text-gray-600">リスク管理が非公式で、アドホック（場当たり的）。</td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="p-3 font-medium text-[#023E8A]">2</td>
+                                        <td class="p-3 font-medium">リスク情報を活用</td>
+                                        <td class="p-3 text-gray-600">リスク管理プラクティスは承認されているが、組織全体で統合されていない。</td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="p-3 font-medium text-[#023E8A]">3</td>
+                                        <td class="p-3 font-medium">反復可能</td>
+                                        <td class="p-3 text-gray-600">正式な方針が組織全体で確立・実践されており、一貫性がある。</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-medium text-[#023E8A]">4</td>
+                                        <td class="p-3 font-medium">適応的</td>
+                                        <td class="p-3 text-gray-600">過去の教訓や予測に基づき継続的に改善し、脅威の変化に迅速に適応できる。</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                     <p class="text-center mt-6 text-gray-700">この2つのプロファイルの「ギャップ」を分析することで、具体的で優先順位付けされた行動計画が生まれます。</p>
                 </div>
             </div>
         </section>
 
-        <!-- Section 4: Business Value -->
         <section id="value" class="py-20">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#023E8A]">コストセンターから競争優位へ</h2>
-                    <p class="mt-4 text-lg text-gray-700 max-w-2xl mx-auto">CSF 2.0を戦略的に導入することで、セキュリティはコストから、事業価値、イノベーション、顧客信頼を生み出す「資産」へと変わります。</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#023E8A]">コストから競争優位へ</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">CSF 2.0を戦略的に導入することで、セキュリティはコストから、事業価値、イノベーション、顧客信頼を生み出す「資産」へと変わります。</p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <div class="text-4xl text-[#0077B6] mb-4">💡</div>
-                        <h3 class="text-xl font-bold mb-2">セキュアなイノベーション</h3>
-                        <p class="text-gray-600">開発初期段階からセキュリティを組み込む「セキュリティ・バイ・デザイン」を推進。手戻りを減らし、安全な製品をより速く市場に投入します。</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                        <div class="text-5xl mb-4">💡</div>
+                        <h3 class="text-xl font-bold mb-2 text-[#0077B6]">セキュアなイノベーション</h3>
+                        <p class="text-gray-600">開発初期からセキュリティを組み込み、手戻りを削減。安全な製品をより速く市場へ。</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <div class="text-4xl text-[#0077B6] mb-4">📈</div>
-                        <h3 class="text-xl font-bold mb-2">投資の正当化 (ROI)</h3>
-                        <p class="text-gray-600">プロファイルとティアを用いて進捗を可視化。データに基づいた優先順位付けで、投資対効果を明確に経営層へ説明できます。</p>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                        <div class="text-5xl mb-4">📈</div>
+                        <h3 class="text-xl font-bold mb-2 text-[#0077B6]">投資の正当化 (ROI)</h3>
+                        <p class="text-gray-600">進捗をティアで可視化。データに基づいた優先順位付けで、投資対効果を明確に説明。</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <div class="text-4xl text-[#0077B6] mb-4">🛡️</div>
-                        <h3 class="text-xl font-bold mb-2">顧客信頼とブランド価値</h3>
-                        <p class="text-gray-600">世界標準への準拠は、顧客への強力なアピールに。インシデントへの対応・復旧能力（レジリエンス）も高め、ブランドを守ります。</p>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center md:col-span-2 lg:col-span-1">
+                        <div class="text-5xl mb-4">🛡️</div>
+                        <h3 class="text-xl font-bold mb-2 text-[#0077B6]">顧客信頼とブランド価値</h3>
+                        <p class="text-gray-600">世界標準への準拠は、顧客への強力なアピールに。レジリエンスも高めブランドを保護。</p>
                     </div>
                 </div>
-                <div class="mt-16 bg-white p-8 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-bold text-center text-[#0077B6] mb-6">投資価値の可視化：成熟度向上の例</h3>
+                
+                <div class="bg-white p-8 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-bold text-center text-[#0077B6] mb-2">投資価値の可視化：成熟度向上の例</h3>
                     <p class="text-center text-gray-600 mb-6 max-w-3xl mx-auto">CSFへの投資は、漠然とした「強化」ではありません。「重要システムの成熟度がティア2からティア3へ向上した」というように、客観的な成果として測定・報告できます。</p>
                     <div class="chart-container">
                         <canvas id="maturityChart"></canvas>
@@ -333,227 +242,48 @@ meta_description: "NIST CSF 2.0はIT活用のブレーキではなく、事業�
             </div>
         </section>
 
-        <!-- Section 5: Roadmap -->
         <section id="roadmap" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#023E8A]">導入へのロードマップ</h2>
-                    <p class="mt-4 text-lg text-gray-700 max-w-2xl mx-auto">CSF 2.0の導入は、管理可能で現実的な4つのフェーズに分解できます。着実に成果を上げるための行動計画です。</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#023E8A]">導入への4ステップ・ロードマップ</h2>
                 </div>
                 <div class="relative">
-                    <!-- The connecting line -->
                     <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-300 transform -translate-y-1/2"></div>
                     <div class="grid md:grid-cols-4 gap-8 relative">
-                        <div class="text-center p-6 bg-gray-50 rounded-lg shadow-sm border-t-4 border-[#90E0EF]">
-                            <div class="text-3xl font-bold text-[#0077B6] mb-2">1</div>
-                            <h3 class="text-lg font-bold mb-2">ガバナンスとスコープ定義</h3>
+                        <div class="text-center p-6 bg-gray-50 rounded-lg shadow-md border-t-4 border-[#90E0EF]">
+                            <div class="text-4xl font-bold text-[#0077B6] mb-2">1</div>
+                            <h3 class="text-lg font-bold mb-2">統治と計画</h3>
                             <p class="text-sm text-gray-600">経営層の支援を確保し、部門横断チームを結成。パイロットプロジェクトを決定します。</p>
                         </div>
-                        <div class="text-center p-6 bg-gray-50 rounded-lg shadow-sm border-t-4 border-[#48BFE3]">
-                            <div class="text-3xl font-bold text-[#0077B6] mb-2">2</div>
+                        <div class="text-center p-6 bg-gray-50 rounded-lg shadow-md border-t-4 border-[#48BFE3]">
+                            <div class="text-4xl font-bold text-[#0077B6] mb-2">2</div>
                             <h3 class="text-lg font-bold mb-2">評価と分析</h3>
                             <p class="text-sm text-gray-600">現状(As-Is)プロファイルと現在のティアレベルを評価・文書化し、現在地を把握します。</p>
                         </div>
-                        <div class="text-center p-6 bg-gray-50 rounded-lg shadow-sm border-t-4 border-[#0096C7]">
-                            <div class="text-3xl font-bold text-[#0077B6] mb-2">3</div>
-                            <h3 class="text-lg font-bold mb-2">優先順位付けと計画</h3>
+                        <div class="text-center p-6 bg-gray-50 rounded-lg shadow-md border-t-4 border-[#0096C7]">
+                            <div class="text-4xl font-bold text-[#0077B6] mb-2">3</div>
+                            <h3 class="text-lg font-bold mb-2">優先順位付け</h3>
                             <p class="text-sm text-gray-600">目標(To-Be)プロファイルを定義し、ギャップを分析。具体的な行動計画を策定します。</p>
                         </div>
-                        <div class="text-center p-6 bg-gray-50 rounded-lg shadow-sm border-t-4 border-[#023E8A]">
-                            <div class="text-3xl font-bold text-[#0077B6] mb-2">4</div>
-                            <h3 class="text-lg font-bold mb-2">実行、測定、共有</h3>
-                            <p class="text-sm text-gray-600">計画を実行し、進捗を測定。成果をステークホルダーと共有し、改善サイクルを回します。</p>
+                        <div class="text-center p-6 bg-gray-50 rounded-lg shadow-md border-t-4 border-[#023E8A]">
+                            <div class="text-4xl font-bold text-[#0077B6] mb-2">4</div>
+                            <h3 class="text-lg font-bold mb-2">実行と改善</h3>
+                            <p class="text-sm text-gray-600">計画を実行し、進捗を測定。成果を共有し、改善サイクルを回します。</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- Section 6: Case Studies -->
-        <section id="cases" class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#023E8A]">リーダーたちに学ぶ成功事例</h2>
-                    <p class="mt-4 text-lg text-gray-700 max-w-2xl mx-auto">CSF 2.0は理論だけではありません。様々な業界のリーダー企業が、どのようにフレームワークを活用し、具体的な成果を生み出しているかを見てみましょう。</p>
-                    <div id="case-study-filters" class="flex justify-center flex-wrap gap-3 mt-6">
-                         <button class="case-filter-button px-6 py-2 bg-white rounded-full shadow-sm font-medium transition-all duration-300 active" data-filter="all">すべて</button>
-                         <button class="case-filter-button px-6 py-2 bg-white rounded-full shadow-sm font-medium transition-all duration-300" data-filter="tech">テクノロジー</button>
-                         <button class="case-filter-button px-6 py-2 bg-white rounded-full shadow-sm font-medium transition-all duration-300" data-filter="finance">金融</button>
-                    </div>
-                </div>
-                <div id="case-study-grid" class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-                    <!-- JS will populate this -->
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- Footer -->
     <footer class="bg-[#023E8A] text-white py-8">
         <div class="container mx-auto px-6 text-center">
-            <p>このインタラクティブ・ガイドは、NIST サイバーセキュリティフレームワーク 2.0 の理解を促進するために作成されました。</p>
-            <p class="text-sm mt-2 opacity-75">CSF 2.0は、リスクに基づいたアプローチを通じて、あらゆる組織のサイバーセキュリティ体制強化を支援します。</p>
+            <p>このインフォグラフィックは、NIST サイバーセキュリティフレームワーク 2.0 の理解を促進するために作成されました。</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Data ---
-            const functionData = {
-                govern: {
-                    title: '統治 (Govern)',
-                    description: '組織のサイバーセキュリティリスク管理に関する戦略、期待、ポリシーを確立し、伝達し、モニタリングします。他のすべての機能の基盤となる中心的なハブです。経営層が主導し、事業戦略とセキュリティを整合させる役割を担います。'
-                },
-                identify: {
-                    title: '特定 (Identify)',
-                    description: 'サイバーセキュリティリスクを管理するために、現在の組織の資産（データ、人材、デバイス、システム等）、リスク、脆弱性を理解し、把握します。何を守るべきか、どんなリスクがあるかを明確にする最初のステップです。'
-                },
-                protect: {
-                    title: '防御 (Protect)',
-                    description: '重要なサービスや資産の提供を確実にするための、適切な安全防護策を設計し、導入します。アクセス制御、データセキュリティ、意識向上トレーニングなどが含まれ、インシデントの発生を未然に防ぎます。'
-                },
-                detect: {
-                    title: '検知 (Detect)',
-                    description: 'サイバーセキュリティイベントの発生を迅速に発見するための適切な活動を定義し、実行します。異常や侵害の兆候を継続的に監視し、インシデントを早期に特定することが目的です。'
-                },
-                respond: {
-                    title: '対応 (Respond)',
-                    description: '検知されたサイバーセキュリティインシデントに対して、適切なアクションを取ります。インシデントの影響を封じ込め、分析し、根絶するための計画と実行が含まれます。'
-                },
-                recover: {
-                    title: '復旧 (Recover)',
-                    description: 'サイバーセキュリティインシデントによって損なわれた能力やサービスを、タイムリーに回復するための適切な活動を維持します。事業継続計画（BCP）と連携し、通常業務への復帰を目指します。'
-                }
-            };
-
-            const tierData = {
-                '1': [
-                    { feature: 'リスク管理プロセス', description: '非公式で、アドホックかつリアクティブ（事後対応的）。' },
-                    { feature: '統合的リスク管理', description: '限定的なリスク認識。組織全体での一貫したアプローチは存在しない。' },
-                    { feature: 'エコシステム連携', description: '外部との情報共有や連携はほとんど行われない。' }
-                ],
-                '2': [
-                    { feature: 'リスク管理プロセス', description: 'リスク管理プロセスは承認されているが、組織全体では統合されていない。' },
-                    { feature: '統合的リスク管理', description: '組織レベルのリスク認識はあるが、全社的なポリシーとして体系化されていない。' },
-                    { feature: 'エコシステム連携', description: '非公式な情報共有が行われることがあるが、体系的ではない。' }
-                ],
-                '3': [
-                    { feature: 'リスク管理プロセス', description: '正式なリスク管理方針が組織全体で確立され、一貫して実践されている。' },
-                    { feature: '統合的リスク管理', description: '全社的なリスク管理ポリシーと手順が存在し、従業員は役割と責任を理解している。' },
-                    { feature: 'エコシステム連携', description: '正式なプロセスを通じて、パートナーとリスク情報を共有し、連携する。' }
-                ],
-                '4': [
-                    { feature: 'リスク管理プロセス', description: '過去の教訓や予測に基づき、リスク管理プラクティスを継続的に改善している。' },
-                    { feature: '統合的リスク管理', description: 'リスク管理は組織文化に根付いており、脅威の変化に迅速に適応する。' },
-                    { feature: 'エコシステム連携', description: 'エコシステム全体でリアルタイムに脅威情報を共有し、協調して対応する。' }
-                ]
-            };
-            
-            const caseStudiesData = [
-                {
-                    category: 'tech',
-                    company: 'SAP',
-                    challenge: '複雑なグローバル組織におけるリスク管理アプローチの統一。',
-                    solution: '経営層主導でCSFを導入。既存フレームワークと統合し、段階的に展開。',
-                    outcome: 'リスクの構造的理解、組織の体系化、共通ビジョンの醸成を実現。'
-                },
-                {
-                    category: 'tech',
-                    company: 'Intel',
-                    challenge: '全社的なリスク許容度の統一と投資の最適化。',
-                    solution: 'CSFを用いて事業部門ごとのリスクの「ヒートマップ」を作成。',
-                    outcome: '全社的なリスク対話の促進、投資の優先順位付け、効率的な評価プロセスを実現。'
-                },
-                {
-                    category: 'finance',
-                    company: '金融セクター (FSSCC)',
-                    challenge: '複数の規制要件の調和とコンプライアンスの簡素化。',
-                    solution: '規制要件をCSFにマッピングし、業界特化の「金融プロファイル」を作成。',
-                    outcome: '業界と規制当局間の共通言語を確立し、コンプライアンスプロセスを効率化。'
-                },
-                {
-                    category: 'finance',
-                    company: '米国大手銀行',
-                    challenge: '静的なコンプライアンスから動的なリスク管理への移行。',
-                    solution: '旧来のチェックリストを廃止し、CSF 2.0ベースの部門別自己評価を導入。',
-                    outcome: '管理策ギャップのリアルタイムな可視化、データ主導の優先順位付けと投資判断が可能に。'
-                }
-            ];
-
-            // --- Navigation Highlighting ---
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 60) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-
-            // --- Interactive Wheel Logic ---
-            const wheelSegments = document.querySelectorAll('.wheel-segment, .wheel-center');
-            const functionTitle = document.getElementById('function-title');
-            const functionDescription = document.getElementById('function-description');
-
-            wheelSegments.forEach(segment => {
-                segment.addEventListener('click', () => {
-                    const functionKey = segment.dataset.function;
-                    if (functionData[functionKey]) {
-                        // Update details
-                        functionTitle.textContent = functionData[functionKey].title;
-                        functionDescription.textContent = functionData[functionKey].description;
-
-                        // Update active state
-                        wheelSegments.forEach(s => s.classList.remove('active'));
-                        segment.classList.add('active');
-                    }
-                });
-            });
-            
-            // Set initial state for wheel
-            document.querySelector('.wheel-center').click();
-
-            // --- Tiers Logic ---
-            const tierButtons = document.querySelectorAll('.tier-button');
-            const tierDetailsBody = document.getElementById('tier-details');
-
-            function updateTierDetails(tier) {
-                tierDetailsBody.innerHTML = '';
-                tierData[tier].forEach(item => {
-                    const row = document.createElement('tr');
-                    row.classList.add('border-b');
-                    row.innerHTML = `
-                        <td class="py-3 px-4 text-gray-800 font-medium">${item.feature}</td>
-                        <td class="py-3 px-4 text-gray-600">${item.description}</td>
-                    `;
-                    tierDetailsBody.appendChild(row);
-                });
-            }
-
-            tierButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    tierButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    updateTierDetails(button.dataset.tier);
-                });
-            });
-            
-            // Set initial state for tiers
-            document.querySelector('.tier-button[data-tier="1"]').click();
-
-            // --- Maturity Chart ---
             const ctx = document.getElementById('maturityChart').getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
@@ -561,82 +291,35 @@ meta_description: "NIST CSF 2.0はIT活用のブレーキではなく、事業�
                     labels: ['現状 (As-Is)', '目標 (To-Be)'],
                     datasets: [{
                         label: '成熟度ティアレベル',
-                        data: [2, 3],
-                        backgroundColor: [
-                            'rgba(144, 224, 239, 0.6)',
-                            'rgba(0, 119, 182, 0.6)'
-                        ],
-                        borderColor: [
-                            'rgba(144, 224, 239, 1)',
-                            'rgba(0, 119, 182, 1)'
-                        ],
-                        borderWidth: 1
+                        data: [2, 3.5],
+                        backgroundColor: ['rgba(144, 224, 239, 0.7)', 'rgba(0, 119, 182, 0.7)'],
+                        borderColor: ['#90E0EF', '#0077B6'],
+                        borderWidth: 2,
+                        borderRadius: 5
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 4,
-                            ticks: {
-                                stepSize: 1,
-                                callback: function(value, index, values) {
-                                    return 'ティア ' + value;
-                                }
-                            }
-                        }
-                    },
+                    scales: { y: { beginAtZero: true, max: 4, ticks: { stepSize: 1, callback: (v) => 'ティア ' + v } } },
                     plugins: {
-                        legend: {
-                            display: false
-                        },
+                        legend: { display: false },
                         tooltip: {
-                             callbacks: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) { return label.join(' '); }
+                                    return label;
+                                },
                                 label: function(context) {
-                                    return '成熟度: ティア ' + context.parsed.y;
+                                    return '目標成熟度: ティア ' + context.parsed.y;
                                 }
                             }
                         }
                     }
                 }
             });
-            
-            // --- Case Studies Logic ---
-            const caseGrid = document.getElementById('case-study-grid');
-            const filterButtons = document.querySelectorAll('.case-filter-button');
-
-            function renderCaseStudies(filter = 'all') {
-                caseGrid.innerHTML = '';
-                const filteredCases = filter === 'all' 
-                    ? caseStudiesData 
-                    : caseStudiesData.filter(c => c.category === filter);
-
-                filteredCases.forEach(study => {
-                    const card = document.createElement('div');
-                    card.className = 'case-study-card bg-white p-6 rounded-lg shadow-md border-l-4 border-[#0077B6]';
-                    card.innerHTML = `
-                        <h3 class="text-xl font-bold text-[#023E8A] mb-2">${study.company}</h3>
-                        <p class="mb-4"><strong class="font-medium text-gray-700">課題:</strong> <span class="text-gray-600">${study.challenge}</span></p>
-                        <p class="mb-4"><strong class="font-medium text-gray-700">解決策:</strong> <span class="text-gray-600">${study.solution}</span></p>
-                        <p><strong class="font-medium text-gray-700">成果:</strong> <span class="text-gray-600">${study.outcome}</span></p>
-                    `;
-                    caseGrid.appendChild(card);
-                });
-            }
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    renderCaseStudies(button.dataset.filter);
-                });
-            });
-
-            // Initial render of case studies
-            renderCaseStudies();
-
         });
     </script>
 </body>
