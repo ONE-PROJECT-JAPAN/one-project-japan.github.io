@@ -1,0 +1,217 @@
+---
+# multilingual page pair id, this must pair with translations of this page. (This name must be unique)
+lng_pair: id_Examples
+title: ディスクフォレンジック調査シナリオ
+
+# post specific
+# if not specified, .name will be used from _data/owner/[language].yml
+# author:
+# multiple category is not supported
+category: Security
+# multiple tag entries are possible
+tags: [Security,]
+# thumbnail image for post
+img: ":The image features a clean, modern layout showcasing the title cyber-security-04.jpg.webp"
+# disable comments on this page
+#comments_disable: true
+
+# publish date
+date: 2025-08-11 00:00:00 +0900
+
+# seo
+# if not specified, date will be used.
+#meta_modify_date: 2022-02-10 08:11:06 +0900
+# check the meta_common_description in _data/owner/[language].yml
+meta_description: "企業内に潜むデジタルリスクを可視化し、インシデント対応能力の向上を図ります"
+# optional
+# please use the "image_viewer_on" below to enable image viewer for individual pages or posts (_posts/ or [language]/_posts folders).
+# image viewer can be enabled or disabled for all posts using the "image_viewer_posts: true" setting in _data/conf/main.yml.
+#image_viewer_on: true
+# please use the "image_lazy_loader_on" below to enable image lazy loader for individual pages or posts (_posts/ or [language]/_posts folders).
+# image lazy loader can be enabled or disabled for all posts using the "image_lazy_loader_posts: true" setting in _data/conf/main.yml.
+#image_lazy_loader_on: true
+# exclude from on site search
+#on_site_search_exclude: true
+# exclude from search engines
+#search_engine_exclude: true
+# to disable this page, simply set published: false or delete this file
+#published: false
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ディスクフォレンジック調査シナリオ インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#00449E] mb-4">ディスクフォレンジック調査シナリオ</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">企業内に潜むデジタルリスクを可視化し、インシデント対応能力の向上を図ります。</p>
+        </header>
+
+        <main class="space-y-8">
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-[#005CB9] mb-4">1. 情報漏洩：内部からのデータ持ち出し</h2>
+                <p class="text-gray-600 mb-6">企業の競争力や信頼を直接脅かす情報漏洩は、退職者だけでなく在職中の従業員によっても引き起こされます。持ち出し経路は多様化しており、その手口を把握することが対策の第一歩です。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">💾</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">USBメモリ等</h4>
+                            <p class="text-sm text-gray-600">物理媒体への直接コピー</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">☁️</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">個人クラウド</h4>
+                            <p class="text-sm text-gray-600">Web経由でのアップロード</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">📧</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">個人メール</h4>
+                            <p class="text-sm text-gray-600">Webメールからの外部送信</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">📤</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">ファイル転送</h4>
+                            <p class="text-sm text-gray-600">許可されていないサービスの利用</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-[#005CB9] mb-4">2. 内部不正：権限の悪用と証拠隠滅</h2>
+                <p class="text-gray-600 mb-6">従業員がその立場を悪用する内部不正には、金銭的被害や業務妨害だけでなく、犯行を隠蔽するための証拠隠滅行為も含まれます。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">💰</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">データ改ざん (横領)</h4>
+                            <p class="text-sm text-gray-600">会計ソフト等を不正操作し、架空請求などで金銭を窃取する。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">💥</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">データ破壊 (業務妨害)</h4>
+                            <p class="text-sm text-gray-600">不満などから重要な共有ファイルを削除・破損させ、業務を妨害する。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">🎭</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">なりすまし</h4>
+                            <p class="text-sm text-gray-600">他人のアカウントを不正利用し、誹謗中傷メールを送信するなどして混乱を招く。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <span class="text-3xl mr-4">🗑️</span>
+                        <div>
+                            <h4 class="font-bold text-red-700">ファイル削除</h4>
+                            <p class="text-sm text-gray-600">関連ファイルをゴミ箱に移動、または直接削除して痕跡を消す。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <span class="text-3xl mr-4">📝</span>
+                        <div>
+                            <h4 class="font-bold text-red-700">データ偽装</h4>
+                            <p class="text-sm text-gray-600">ファイル名を無関係な名前に変更したり、拡張子を偽装する。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <span class="text-3xl mr-4">🧹</span>
+                        <div>
+                            <h4 class="font-bold text-red-700">ログ消去</h4>
+                            <p class="text-sm text-gray-600">OSのイベントログやアプリケーションの操作履歴を消去する。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-[#005CB9] mb-4">3. マルウェア感染：外部からの脅威</h2>
+                <p class="text-gray-600 mb-6">ランサムウェアやスパイウェアなどのマルウェアは、事業継続を脅かす重大なインシデントです。感染経路は年々巧妙化しており、侵入経路と被害範囲の迅速な特定が求められます。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">✉️</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">メール経由</h4>
+                            <p class="text-sm text-gray-600">取引先を装ったメールの添付ファイルを開封させ、ランサムウェアなどに感染させる。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">🌐</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">Webサイト閲覧</h4>
+                            <p class="text-sm text-gray-600">改ざんされたWebサイトを閲覧しただけで、意図せずマルウェアがダウンロード・実行される。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">🔓</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">脆弱性を突いた侵入</h4>
+                            <p class="text-sm text-gray-600">パッチ未適用のOSやソフトウェアの脆弱性を悪用し、外部から不正に侵入する。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-[#005CB9] mb-4">4. Click FIX：ユーザーを狙う詐欺</h2>
+                <p class="text-gray-600 mb-6">従業員の誤操作や心理的な隙を突く詐欺は、マルウェア感染の入口となるだけでなく、直接的な金銭被害に繋がるケースもあります。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">🎣</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">フィッシング詐欺</h4>
+                            <p class="text-sm text-gray-600">正規の通知を装い、偽サイトへ誘導してIDやパスワードを窃取する手口。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">💻</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">サポート詐欺</h4>
+                            <p class="text-sm text-gray-600">偽のウイルス警告を表示し、有償サポート契約や遠隔操作ソフトの導入へ誘導する手口。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                        <span class="text-3xl mr-4">🖱️</span>
+                        <div>
+                            <h4 class="font-bold text-[#005CB9]">ワンクリック詐欺</h4>
+                            <p class="text-sm text-gray-600">リンクをクリックしただけで、不当な料金請求画面を表示させる手口。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <p class="text-gray-600">これらのシナリオを基に、貴社の環境やリスクに合わせた具体的な検証を行い、内製での対応範囲を見極めることが重要です。</p>
+        </footer>
+    </div>
+
+</body>
+</html>
+
